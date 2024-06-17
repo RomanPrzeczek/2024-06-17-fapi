@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>PRODUKT</title>
+</head>
+<body>
+    <!-- Input form -->
+    <div class="card bg-secondary" style="margin: 2% 10% 2% 10%; padding: 2%;">
+        <div class="container">
+            <div class="row" style="margin-bottom: 15px;">
+                <div class="col-sm" style="float: right;">
+                    <label style="padding-right: 5%; color: rgb(153, 226, 245);">Loged user:</label>
+                </div>
+                <div class="col-sm" style="float: right;">
+                    <label id="logedUserElement" style="padding: 2%; background: white; width:min-content;"></label>
+                </div>
+                <div class="col-sm" style="float: right;">
+                    <button class="btn btn-sm btn-warning" type="button" onclick="logout()">Logout</button>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 15px;">
+                <div class="col">
+                    <form id="productForm">
+                        <label for="inputProductTitle" style="margin-bottom: 10px; color: rgb(153, 226, 245);">Product title</label>
+                        <input type="text" placeholder="Enter product title" class="form-control" style="margin-bottom: 15px;" id="inputProductTitle" required>
+                        <label for="inputProductTitle" style="margin-bottom: 10px; color: rgb(153, 226, 245);">Product price [CZK]</label>
+                        <input type="text" placeholder="Enter product price in CZK" class="form-control" style="margin-bottom: 15px;" id="inputProductPrice" required>
+                        <label for="inputProductTitle" style="margin-bottom: 10px; color: rgb(153, 226, 245);">Product amount</label>
+                        <input type="number" placeholder="Enter product amount, 1pc default." min="1" class="form-control" style="margin-bottom: 15px;" id="inputProductAmount" required>
+                    </form>           
+                </div>
+            </div>
+            <div id="buttonSave" class="row" style="margin-bottom: 15px; display: block;">
+                <button class="btn btn-sm btn-primary" type="button" onclick="saveProduct()">Save new product</button>
+            </div>  
+            <div id="buttonUpdate" class="row" style="margin-bottom: 15px; display: none;">
+                <button class="btn btn-sm btn-warning" type="button" onclick="updateSubmit()"> Save updated product </button>
+            </div>  
+            <div class="row">
+                <button class="btn btn-sm btn-light" style="margin-bottom: 15px;"  type="button" onclick="printLocalStorage()">PrintLocalStorage</button>
+            </div>    
+            <div class="row">
+                <button class="btn btn-sm btn-danger" type="button" onclick="clearLS()">ClearLocalStorage</button>
+            </div> 
+        </div>
+    </div>
+    <!-- Output card -->
+    <div class="card bg-secondary" style="margin: 2% 10% 2% 10%; padding: 2%;">
+        <div class="table-primary" style="color: rgb(153, 226, 245);">
+            <table>
+                <thead>
+                    <tr><th>Product</th></tr>
+                    <tr>
+                        <span>Actual EUR currency foreign mid X-change rate: <label onload="getRate()" id="inputKurz" ></label>
+                        CZE, data source: <a href="https://www.kurzy.cz/">kurzy.cz</a></span></tr>
+                    <tr>
+                        <th scope="col" style="width: 50px; text-align: center;">Id</th>
+                        <th scope="col" style="width: 100px; text-align: center;">Title</th>
+                        <th scope="col" style="width: 120px; text-align: center; margin-right: 2px;">Unit price [CZK]</th>
+                        <th scope="col" style="width: 100px; text-align: center;">Amount</th>
+                        <th scope="col" style="width: 110px; text-align: center;">Total price + 21% TAX [CZK]</th>
+                        <th scope="col" style="width: 110px; text-align: center;">Total price + 21% TAX [EUR]</th>
+                    </tr>
+                </thead>
+                <tbody id="tabledata"></tbody>    
+            </table>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <script src="js-fapiRomiHackathon/login_logout.js"></script>
+    <script src="js-fapiRomiHackathon/rate.js"></script>
+    <script src="js-fapiRomiHackathon/product.js"></script>
+    <script src="js-fapiRomiHackathon/localStorage.js"></script>
+    <script>getLogedUser()</script>
+    <script>getRate()</script>
+    <script>fillTableData()</script>
+</body>
+</html>
